@@ -13,8 +13,12 @@ with open("data.csv", "r") as file:
     high_scorers = []
 
     for row in reader:
-
-        score = int(row[2])
+        try:
+            score = int(row[2])
+        except ValueError:
+            print(f"Warning: Invalid score for {row[0]}. Skipping...")
+            continue
+        
         total_score = score + total_score
 
         if score > highest_score:
